@@ -32,7 +32,13 @@
             this.CurrentWeatherStats = new System.Windows.Forms.Label();
             this.labelTime = new System.Windows.Forms.Label();
             this.tickTimer = new System.Windows.Forms.Timer(this.components);
-            this.button1 = new System.Windows.Forms.Button();
+            this.labelDay1 = new System.Windows.Forms.Label();
+            this.labelDay2 = new System.Windows.Forms.Label();
+            this.labelDay3 = new System.Windows.Forms.Label();
+            this.labelDay4 = new System.Windows.Forms.Label();
+            this.labelDay5 = new System.Windows.Forms.Label();
+            this.labelDay6 = new System.Windows.Forms.Label();
+            this.labelDay7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CurrentWeatherStats
@@ -62,22 +68,109 @@
             this.tickTimer.Interval = 50;
             this.tickTimer.Tick += new System.EventHandler(this.tickTimer_Tick);
             // 
-            // button1
+            // labelDay1
             // 
-            this.button1.BackColor = System.Drawing.Color.CadetBlue;
-            this.button1.Location = new System.Drawing.Point(703, 47);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(187, 56);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = false;
+            this.labelDay1.BackColor = System.Drawing.Color.SkyBlue;
+            this.labelDay1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelDay1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDay1.ForeColor = System.Drawing.Color.White;
+            this.labelDay1.Location = new System.Drawing.Point(6, 134);
+            this.labelDay1.Name = "labelDay1";
+            this.labelDay1.Size = new System.Drawing.Size(147, 42);
+            this.labelDay1.TabIndex = 2;
+            this.labelDay1.Text = "DAY";
+            this.labelDay1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelDay2
+            // 
+            this.labelDay2.BackColor = System.Drawing.Color.SkyBlue;
+            this.labelDay2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelDay2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDay2.ForeColor = System.Drawing.Color.White;
+            this.labelDay2.Location = new System.Drawing.Point(143, 134);
+            this.labelDay2.Name = "labelDay2";
+            this.labelDay2.Size = new System.Drawing.Size(147, 42);
+            this.labelDay2.TabIndex = 3;
+            this.labelDay2.Text = "DAY";
+            this.labelDay2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelDay3
+            // 
+            this.labelDay3.BackColor = System.Drawing.Color.SkyBlue;
+            this.labelDay3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelDay3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDay3.ForeColor = System.Drawing.Color.White;
+            this.labelDay3.Location = new System.Drawing.Point(282, 134);
+            this.labelDay3.Name = "labelDay3";
+            this.labelDay3.Size = new System.Drawing.Size(147, 42);
+            this.labelDay3.TabIndex = 4;
+            this.labelDay3.Text = "DAY";
+            this.labelDay3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelDay4
+            // 
+            this.labelDay4.BackColor = System.Drawing.Color.SkyBlue;
+            this.labelDay4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelDay4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDay4.ForeColor = System.Drawing.Color.White;
+            this.labelDay4.Location = new System.Drawing.Point(419, 134);
+            this.labelDay4.Name = "labelDay4";
+            this.labelDay4.Size = new System.Drawing.Size(147, 42);
+            this.labelDay4.TabIndex = 5;
+            this.labelDay4.Text = "DAY";
+            this.labelDay4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelDay5
+            // 
+            this.labelDay5.BackColor = System.Drawing.Color.SkyBlue;
+            this.labelDay5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelDay5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDay5.ForeColor = System.Drawing.Color.White;
+            this.labelDay5.Location = new System.Drawing.Point(560, 134);
+            this.labelDay5.Name = "labelDay5";
+            this.labelDay5.Size = new System.Drawing.Size(147, 42);
+            this.labelDay5.TabIndex = 6;
+            this.labelDay5.Text = "DAY";
+            this.labelDay5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelDay6
+            // 
+            this.labelDay6.BackColor = System.Drawing.Color.SkyBlue;
+            this.labelDay6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelDay6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDay6.ForeColor = System.Drawing.Color.White;
+            this.labelDay6.Location = new System.Drawing.Point(699, 134);
+            this.labelDay6.Name = "labelDay6";
+            this.labelDay6.Size = new System.Drawing.Size(147, 42);
+            this.labelDay6.TabIndex = 7;
+            this.labelDay6.Text = "DAY";
+            this.labelDay6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelDay7
+            // 
+            this.labelDay7.BackColor = System.Drawing.Color.SkyBlue;
+            this.labelDay7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.labelDay7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDay7.ForeColor = System.Drawing.Color.White;
+            this.labelDay7.Location = new System.Drawing.Point(821, 134);
+            this.labelDay7.Name = "labelDay7";
+            this.labelDay7.Size = new System.Drawing.Size(147, 42);
+            this.labelDay7.TabIndex = 8;
+            this.labelDay7.Text = "DAY";
+            this.labelDay7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // WeatherControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SlateGray;
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.labelDay7);
+            this.Controls.Add(this.labelDay6);
+            this.Controls.Add(this.labelDay5);
+            this.Controls.Add(this.labelDay4);
+            this.Controls.Add(this.labelDay3);
+            this.Controls.Add(this.labelDay2);
+            this.Controls.Add(this.labelDay1);
             this.Controls.Add(this.labelTime);
             this.Controls.Add(this.CurrentWeatherStats);
             this.Name = "WeatherControl";
@@ -93,6 +186,12 @@
         private System.Windows.Forms.Label CurrentWeatherStats;
         private System.Windows.Forms.Label labelTime;
         private System.Windows.Forms.Timer tickTimer;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label labelDay1;
+        private System.Windows.Forms.Label labelDay2;
+        private System.Windows.Forms.Label labelDay3;
+        private System.Windows.Forms.Label labelDay4;
+        private System.Windows.Forms.Label labelDay5;
+        private System.Windows.Forms.Label labelDay6;
+        private System.Windows.Forms.Label labelDay7;
     }
 }
