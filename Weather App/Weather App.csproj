@@ -72,6 +72,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="WeatherControl.resx">
       <DependentUpon>WeatherControl.cs</DependentUpon>
@@ -88,6 +89,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\snowy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\scattered clouds.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\overcast clouds.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\very heavy rain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rain and snow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\thunder storm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heavy rain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rainy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\broken up clouds.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cloudy.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

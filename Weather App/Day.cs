@@ -15,6 +15,6 @@ namespace Weather_App
         {
             date = currentTemp = currentTime = condition = location = tempHigh = tempLow
                 = windSpeed = windDirection = precipitation = visibility = "";
-        }
+        }  
     }
 }

@@ -12,12 +12,16 @@ namespace Weather_App
 {
     public partial class Form1 : Form
     {
+        public static string currentLocation = "Stratford,CA";
+        public static double tempCurrent = 0;
+        WeatherControl CurrentC;
         public Form1()
         {
             InitializeComponent();
             WeatherControl c = new WeatherControl();
             c.Width = this.Width;
             c.Height = this.Height;
+            CurrentC = c;
             this.Controls.Add(c);
             this.SuspendLayout();
         }
@@ -25,6 +29,16 @@ namespace Weather_App
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            if (CurrentC != null)
+            {
+                CurrentC.Width = this.Width;
+                CurrentC.Height = this.Height;
+                CurrentC.resize();
+            }
         }
     }
 }
