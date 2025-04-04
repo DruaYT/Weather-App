@@ -94,31 +94,76 @@
     <None Include="Resources\snowy.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\scattered clouds.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\overcast clouds.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\very heavy rain.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\rain and snow.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\thunder storm.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\heavy rain.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\rainy.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\cloudy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\very heavy rain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heavy rain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\moderate rain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\light rain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rain and snow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\light snow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\very heavy snow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heavy snow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\moderate snow.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\broken up clouds.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\cloudy.png" />
+    <None Include="Resources\overcast clouds.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mostly cloudy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\snow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\thunderstorm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shower rain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\broken clouds.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\scattered clouds.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\few clouds.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clear sky.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

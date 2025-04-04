@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,11 +26,76 @@ namespace Weather_App
 
         int sec, min, hour;
 
-        bool IS_MILITARY_TIME, IS_CELCIUS=true; 
+        bool IS_MILITARY_TIME, IS_CELCIUS=true;
 
         public WeatherControl()
         {
             InitializeComponent();
+        }
+
+        public Image GetImage(string cond)
+        {
+            Image ret;
+            switch (cond)
+            {
+                case "few clouds" :
+                    ret = Properties.Resources.few_clouds;
+                    return ret;
+
+                case "light rain":
+                    ret = Properties.Resources.light_rain;
+                    return ret;
+
+                case "moderate rain":
+                    ret = Properties.Resources.moderate_rain;
+                    return ret;
+
+                case "heavy rain":
+                    ret = Properties.Resources.heavy_rain;
+                    return ret;
+
+                case "very heavy rain":
+                    ret = Properties.Resources.moderate_rain;
+                    return ret;
+
+                case "rain and snow":
+                    ret = Properties.Resources.rain_and_snow;
+                    return ret;
+
+                case "light snow":
+                    ret = Properties.Resources.light_snow;
+                    return ret;
+
+                case "moderate snow":
+                    ret = Properties.Resources.moderate_snow;
+                    return ret;
+
+                case "heavy snow":
+                    ret = Properties.Resources.heavy_snow;
+                    return ret;
+
+                case "very heavy snow":
+                    ret = Properties.Resources.very_heavy_snow;
+                    return ret;
+
+                case "overcast clouds":
+                    ret = Properties.Resources.overcast_clouds;
+                    return ret;
+
+                case "mostly cloudy":
+                    ret = Properties.Resources.mostly_cloudy;
+                    return ret;
+
+                case "broken up clouds":
+                    ret = Properties.Resources.overcast_clouds;
+                    return ret;
+
+                case "scattered clouds":
+                    ret = Properties.Resources.scattered_clouds;
+                    return ret;
+            }
+
+            return null;
         }
 
         public void resize()
@@ -60,11 +127,14 @@ namespace Weather_App
                         dayLabels[l].Location = new Point(dayLabels[l - 1].Location.X + (int)(dayLabels[l - 1].Width * 1.1), f.Height / 5);
                     }
 
+                    Image a = GetImage(days[l].condition);
+
                     statLabels[l].Location = new Point(dayLabels[l].Location.X, dayLabels[l].Location.Y + dayLabels[l].Height);
 
                     symbols[l].Location = new Point(dayLabels[l].Location.X, statLabels[l].Location.Y + statLabels[l].Height);
 
-                    symbols[l].Image = Properties.Resources.ReferenceEquals(days[l].condition);
+                    symbols[l].SizeMode = PictureBoxSizeMode.StretchImage;
+                    symbols[l].Image = a;
 
                     dayLabels[l].Text = DateTime.Today.AddDays(l).DayOfWeek.ToString();
                 }
@@ -109,7 +179,7 @@ namespace Weather_App
                 d.windDirection = $"{reader.GetAttribute("deg")}° [{reader.GetAttribute("name")}]";
 
                 reader.ReadToFollowing("windSpeed");
-                d.windSpeed = $"{reader.GetAttribute("name")} m/s";
+                d.windSpeed = $"{reader.GetAttribute("mps")} m/s";
 
                 reader.ReadToFollowing("temperature");
                 d.tempLow = reader.GetAttribute("min");

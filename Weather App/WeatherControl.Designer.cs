@@ -53,6 +53,8 @@
             this.pictureDay5 = new System.Windows.Forms.PictureBox();
             this.pictureDay6 = new System.Windows.Forms.PictureBox();
             this.pictureDay7 = new System.Windows.Forms.PictureBox();
+            this.cityTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureDay1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureDay2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureDay3)).BeginInit();
@@ -77,9 +79,9 @@
             // 
             this.labelTime.Font = new System.Drawing.Font("MS PGothic", 19.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.labelTime.Location = new System.Drawing.Point(606, 0);
+            this.labelTime.Location = new System.Drawing.Point(615, 0);
             this.labelTime.Name = "labelTime";
-            this.labelTime.Size = new System.Drawing.Size(287, 44);
+            this.labelTime.Size = new System.Drawing.Size(278, 44);
             this.labelTime.TabIndex = 1;
             this.labelTime.Text = "00:00:00 AM";
             this.labelTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -336,12 +338,32 @@
             this.pictureDay7.TabIndex = 22;
             this.pictureDay7.TabStop = false;
             // 
+            // cityTextBox
+            // 
+            this.cityTextBox.Location = new System.Drawing.Point(324, 12);
+            this.cityTextBox.Name = "cityTextBox";
+            this.cityTextBox.Size = new System.Drawing.Size(285, 22);
+            this.cityTextBox.TabIndex = 23;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MS PGothic", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.label1.Location = new System.Drawing.Point(6, 77);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(143, 23);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "LOW - HIGH";
+            // 
             // WeatherControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SlateGray;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cityTextBox);
             this.Controls.Add(this.pictureDay7);
             this.Controls.Add(this.pictureDay6);
             this.Controls.Add(this.pictureDay5);
@@ -406,5 +428,7 @@
         private System.Windows.Forms.PictureBox pictureDay5;
         private System.Windows.Forms.PictureBox pictureDay6;
         private System.Windows.Forms.PictureBox pictureDay7;
+        private System.Windows.Forms.TextBox cityTextBox;
+        private System.Windows.Forms.Label label1;
     }
 }
