@@ -340,9 +340,10 @@
             // 
             // cityTextBox
             // 
+            this.cityTextBox.Font = new System.Drawing.Font("MS Gothic", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cityTextBox.Location = new System.Drawing.Point(324, 12);
             this.cityTextBox.Name = "cityTextBox";
-            this.cityTextBox.Size = new System.Drawing.Size(285, 22);
+            this.cityTextBox.Size = new System.Drawing.Size(285, 40);
             this.cityTextBox.TabIndex = 23;
             this.cityTextBox.TextChanged += new System.EventHandler(this.cityTextBox_TextChanged);
             // 
