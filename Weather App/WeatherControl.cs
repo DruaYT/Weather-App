@@ -28,6 +28,15 @@ namespace Weather_App
 
         bool IS_MILITARY_TIME, IS_CELCIUS=true;
 
+        string[] RainIcon = { "rain", "light rain", "moderate rain", "heavy intensity rain", "very heavy rain", "extreme rain" };
+        string[] ShowerIcon = { "shower rain", "light intensity shower rain", "heavy intensity shower rain", "ragged shower rain", "shower rain and drizzle", "heavy shower rain and drizzle", "shower drizzle" };
+        string[] SnowIcon = { "snow", "light snow", "heavy snow", "light shower snow", "shower snow", "heavy shower snow" };
+        string[] RainSnowIcon = { "rain and snow", "sleet", "light shower sleet", "shower sleet" };
+        string[] DrizzleIcon = {"drizzle", "light intensity drizzle", "heavy intensity drizzle", "light intensity drizzle rain", "drizzle rain", "heavy intensity drizzle rain" };
+        string[] MistIcon = {"mist", "haze", "fog", "dust"};
+        string[] ThunderstormIcon = { "thunderstorm", "light thunderstorm", "heavy thunderstorm", "ragged thunderstorm" };
+        string[] ThunderstormRainIcon = { "thunderstorm with light rain", "thunderstorm with rain", "thunderstorm with heavy rain", "thunderstorm with light drizzle", "thunderstorm with drizzle", "thunderstorm with heavy drizzle" };
+
         public WeatherControl()
         {
             InitializeComponent();
@@ -35,64 +44,81 @@ namespace Weather_App
 
         public Image GetImage(string cond)
         {
-            Image ret;
+            if (RainIcon.Contains(cond) == true)
+            {
+                return Properties.Resources.rain;
+            }
+
+            if (ShowerIcon.Contains(cond) == true)
+            {
+                return Properties.Resources.shower_rain;
+            }
+
+            if (SnowIcon.Contains(cond))
+            {
+                return Properties.Resources.snow;
+            }
+
+            if (RainSnowIcon.Contains(cond))
+            {
+                return Properties.Resources.rain_and_snow;
+            }
+
+            if (ThunderstormIcon.Contains(cond))
+            {
+                return Properties.Resources.thunderstorm;
+            }
+
+            if (ThunderstormRainIcon.Contains(cond))
+            {
+                return Properties.Resources.thunderstorm_rain;
+            }
+
+            if (MistIcon.Contains(cond))
+            {
+                return Properties.Resources.mist;
+            }
+
             switch (cond)
             {
-                case "few clouds" :
-                    ret = Properties.Resources.few_clouds;
-                    return ret;
-
-                case "light rain":
-                    ret = Properties.Resources.light_rain;
-                    return ret;
-
-                case "moderate rain":
-                    ret = Properties.Resources.moderate_rain;
-                    return ret;
-
-                case "heavy rain":
-                    ret = Properties.Resources.heavy_rain;
-                    return ret;
-
-                case "very heavy rain":
-                    ret = Properties.Resources.moderate_rain;
-                    return ret;
-
-                case "rain and snow":
-                    ret = Properties.Resources.rain_and_snow;
-                    return ret;
-
-                case "light snow":
-                    ret = Properties.Resources.light_snow;
-                    return ret;
-
-                case "moderate snow":
-                    ret = Properties.Resources.moderate_snow;
-                    return ret;
-
-                case "heavy snow":
-                    ret = Properties.Resources.heavy_snow;
-                    return ret;
-
-                case "very heavy snow":
-                    ret = Properties.Resources.very_heavy_snow;
-                    return ret;
-
-                case "overcast clouds":
-                    ret = Properties.Resources.overcast_clouds;
-                    return ret;
-
-                case "mostly cloudy":
-                    ret = Properties.Resources.mostly_cloudy;
-                    return ret;
-
-                case "broken up clouds":
-                    ret = Properties.Resources.overcast_clouds;
-                    return ret;
+                //
+                // CLEAR SKIES
+                //
+                case "clear sky" :
+                    return Properties.Resources.clear_sky;
+                
+                //
+                // CLOUDS
+                //
+                case "few clouds":
+                    return Properties.Resources.few_clouds;
 
                 case "scattered clouds":
-                    ret = Properties.Resources.scattered_clouds;
-                    return ret;
+                    return Properties.Resources.scattered_clouds;
+
+                case "broken clouds":
+                    return Properties.Resources.broken_clouds;
+
+                case "overcast clouds":
+                    return Properties.Resources.broken_clouds;
+
+                //
+                // SPECIAL
+                //
+                case "tornado":
+                    return Properties.Resources.tornado;
+
+                case "volcanic ash":
+                    return Properties.Resources.volcanic_ash;
+
+                case "squalls":
+                    return Properties.Resources.sqalls;
+
+                case "sand":
+                    return Properties.Resources.sand;
+
+                case "sand/dust whirls":
+                    return Properties.Resources.sand;
             }
 
             return null;
@@ -137,6 +163,7 @@ namespace Weather_App
                     symbols[l].Image = a;
 
                     dayLabels[l].Text = DateTime.Today.AddDays(l).DayOfWeek.ToString();
+
                 }
 
                 labelTime.Location = new Point(f.Width - (int)(1.1*labelTime.Width), 0);
@@ -149,6 +176,8 @@ namespace Weather_App
                 {
                     CurrentWeatherStats.Text = $"{Form1.currentLocation} \n\r{(Convert.ToInt32(Form1.tempCurrent)*(9/5))+32} F";
                 }
+
+                cityTextBox.Location = new Point(this.Width / 2 - cityTextBox.Width/2, cityTextBox.Height);
                 
             }
             catch
@@ -198,6 +227,12 @@ namespace Weather_App
         private void labelStat1_Paint(object sender, PaintEventArgs e)
         {
             resize();
+        }
+
+        private void cityTextBox_TextChanged(object sender, EventArgs e)
+        {
+            string txt = cityTextBox.Text;
+            
         }
 
         private void updateCurrent()
