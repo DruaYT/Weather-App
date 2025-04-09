@@ -55,6 +55,8 @@
             this.pictureDay7 = new System.Windows.Forms.PictureBox();
             this.cityTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.labelSearchError = new System.Windows.Forms.Label();
+            this.buttonSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureDay1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureDay2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureDay3)).BeginInit();
@@ -345,7 +347,6 @@
             this.cityTextBox.Name = "cityTextBox";
             this.cityTextBox.Size = new System.Drawing.Size(285, 40);
             this.cityTextBox.TabIndex = 23;
-            this.cityTextBox.TextChanged += new System.EventHandler(this.cityTextBox_TextChanged);
             // 
             // label1
             // 
@@ -358,12 +359,34 @@
             this.label1.TabIndex = 24;
             this.label1.Text = "LOW - HIGH";
             // 
+            // labelSearchError
+            // 
+            this.labelSearchError.Font = new System.Drawing.Font("MS PGothic", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSearchError.ForeColor = System.Drawing.Color.Red;
+            this.labelSearchError.Location = new System.Drawing.Point(324, 55);
+            this.labelSearchError.Name = "labelSearchError";
+            this.labelSearchError.Size = new System.Drawing.Size(285, 25);
+            this.labelSearchError.TabIndex = 25;
+            this.labelSearchError.Text = "LOCATION NOT FOUND!";
+            this.labelSearchError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // buttonSearch
+            // 
+            this.buttonSearch.Location = new System.Drawing.Point(615, 12);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(43, 40);
+            this.buttonSearch.TabIndex = 26;
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonSearch_MouseClick);
+            // 
             // WeatherControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SlateGray;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.buttonSearch);
+            this.Controls.Add(this.labelSearchError);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cityTextBox);
             this.Controls.Add(this.pictureDay7);
@@ -432,5 +455,7 @@
         private System.Windows.Forms.PictureBox pictureDay7;
         private System.Windows.Forms.TextBox cityTextBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelSearchError;
+        private System.Windows.Forms.Button buttonSearch;
     }
 }

@@ -18,6 +18,7 @@ namespace Weather_App
         List<Day> days = new List<Day>();
 
         List<Label> dayLabels = new List<Label>();
+
         List<Label> statLabels = new List<Label>();
 
         List<PictureBox> symbols = new List<PictureBox>();
@@ -42,40 +43,61 @@ namespace Weather_App
             InitializeComponent();
         }
 
-        public Image GetImage(string cond)
+        public Image GetImage(string cond, int day)
         {
             if (RainIcon.Contains(cond) == true)
             {
+                dayLabels[day].BackColor = Color.RoyalBlue;
+                statLabels[day].BackColor = Color.SteelBlue;
+
                 return Properties.Resources.rain;
             }
 
             if (ShowerIcon.Contains(cond) == true)
             {
+                dayLabels[day].BackColor = Color.DarkBlue;
+                statLabels[day].BackColor = Color.DarkCyan;
+
                 return Properties.Resources.shower_rain;
             }
 
             if (SnowIcon.Contains(cond))
             {
+                dayLabels[day].BackColor = Color.LightBlue;
+                statLabels[day].BackColor = Color.DarkCyan;
+
                 return Properties.Resources.snow;
             }
 
             if (RainSnowIcon.Contains(cond))
             {
+                dayLabels[day].BackColor = Color.CadetBlue;
+                statLabels[day].BackColor = Color.DarkCyan;
+
                 return Properties.Resources.rain_and_snow;
             }
 
             if (ThunderstormIcon.Contains(cond))
             {
+                dayLabels[day].BackColor = Color.DarkGray;
+                statLabels[day].BackColor = Color.DarkCyan;
+
                 return Properties.Resources.thunderstorm;
             }
 
             if (ThunderstormRainIcon.Contains(cond))
             {
+                dayLabels[day].BackColor = Color.Navy;
+                statLabels[day].BackColor = Color.DarkCyan;
+
                 return Properties.Resources.thunderstorm_rain;
             }
 
             if (MistIcon.Contains(cond))
             {
+                dayLabels[day].BackColor = Color.DarkBlue;
+                statLabels[day].BackColor = Color.DarkCyan;
+
                 return Properties.Resources.mist;
             }
 
@@ -85,39 +107,69 @@ namespace Weather_App
                 // CLEAR SKIES
                 //
                 case "clear sky" :
+                    dayLabels[day].BackColor = Color.SkyBlue;
+                    statLabels[day].BackColor = Color.DeepSkyBlue;
+
                     return Properties.Resources.clear_sky;
                 
                 //
                 // CLOUDS
                 //
                 case "few clouds":
+                    dayLabels[day].BackColor = Color.LightSkyBlue;
+                    statLabels[day].BackColor = Color.SkyBlue;
+
                     return Properties.Resources.few_clouds;
 
                 case "scattered clouds":
+                    dayLabels[day].BackColor = Color.LightGray;
+                    statLabels[day].BackColor = Color.Gray;
+
                     return Properties.Resources.scattered_clouds;
 
                 case "broken clouds":
+                    dayLabels[day].BackColor = Color.LightSlateGray;
+                    statLabels[day].BackColor = Color.Gray;
+
                     return Properties.Resources.broken_clouds;
 
                 case "overcast clouds":
+                    dayLabels[day].BackColor = Color.LightSlateGray;
+                    statLabels[day].BackColor = Color.Gray;
+
                     return Properties.Resources.broken_clouds;
 
                 //
                 // SPECIAL
                 //
                 case "tornado":
+                    dayLabels[day].BackColor = Color.Crimson;
+                    statLabels[day].BackColor = Color.Firebrick;
+
                     return Properties.Resources.tornado;
 
                 case "volcanic ash":
+                    dayLabels[day].BackColor = Color.Crimson;
+                    statLabels[day].BackColor = Color.Firebrick;
+
                     return Properties.Resources.volcanic_ash;
 
                 case "squalls":
+                    dayLabels[day].BackColor = Color.Crimson;
+                    statLabels[day].BackColor = Color.Firebrick;
+
                     return Properties.Resources.sqalls;
 
                 case "sand":
+                    dayLabels[day].BackColor = Color.Crimson;
+                    statLabels[day].BackColor = Color.Firebrick;
+
                     return Properties.Resources.sand;
 
                 case "sand/dust whirls":
+                    dayLabels[day].BackColor = Color.Crimson;
+                    statLabels[day].BackColor = Color.Firebrick;
+
                     return Properties.Resources.sand;
             }
 
@@ -132,6 +184,7 @@ namespace Weather_App
                 for(int l = 0; l < 7; l++)
                 {
                     Day day = days[l];
+                    string cnd = day.condition.ToUpper();
 
                     dayLabels[l].Width = (int)(f.Width / 7.7);
                     dayLabels[l].Height = (int)(f.Height / 20);
@@ -142,7 +195,7 @@ namespace Weather_App
                     symbols[l].Width = (int)(f.Width / 7.7);
                     symbols[l].Height = symbols[l].Width;
 
-                    statLabels[l].Text = $"{day.tempHigh}°C\n\r{day.tempLow}°C\n\r \n\r{day.condition}\n\r{day.precipitation}\n\r \n\r{day.windDirection} \n\r {day.windSpeed}";
+                    statLabels[l].Text = $"{day.tempHigh}°C\n\r{day.tempLow}°C\n\r \n\r{cnd}\n\r{day.precipitation}\n\r \n\r{day.windDirection} \n\r {day.windSpeed}";
 
                     if (l == 0)
                     {
@@ -153,7 +206,7 @@ namespace Weather_App
                         dayLabels[l].Location = new Point(dayLabels[l - 1].Location.X + (int)(dayLabels[l - 1].Width * 1.1), f.Height / 5);
                     }
 
-                    Image a = GetImage(days[l].condition);
+                    Image a = GetImage(days[l].condition, l);
 
                     statLabels[l].Location = new Point(dayLabels[l].Location.X, dayLabels[l].Location.Y + dayLabels[l].Height);
 
@@ -178,6 +231,17 @@ namespace Weather_App
                 }
 
                 cityTextBox.Location = new Point(this.Width / 2 - cityTextBox.Width/2, cityTextBox.Height);
+
+                cityTextBox.Width = this.Width / 5;
+
+                labelSearchError.Location = new Point(cityTextBox.Location.X, cityTextBox.Location.Y + cityTextBox.Height);
+
+                labelSearchError.Width = cityTextBox.Width;
+
+                buttonSearch.Location = new Point(cityTextBox.Location.X + (int)(cityTextBox.Width * 1.01), cityTextBox.Location.Y);
+
+                buttonSearch.Width = cityTextBox.Height;
+                buttonSearch.Height = cityTextBox.Height;
                 
             }
             catch
@@ -189,33 +253,43 @@ namespace Weather_App
 
         private void updateWeather()
         {
-            XmlReader reader = XmlReader.Create($"http://api.openweathermap.org/data/2.5/forecast/daily?q={Form1.currentLocation}&mode=xml&units=metric&cnt=7&appid=3f2e224b815c0ed45524322e145149f0");
-
-            while (reader.Read())
+            try
             {
-                Day d = new Day();
+                XmlReader reader = XmlReader.Create($"http://api.openweathermap.org/data/2.5/forecast/daily?q={Form1.currentLocation}&mode=xml&units=metric&cnt=7&appid=3f2e224b815c0ed45524322e145149f0");
+                days.Clear();
 
-                reader.ReadToFollowing("time");
-                d.date = reader.GetAttribute("date");
+                while (reader.Read())
+                {
+                    Day d = new Day();
 
-                reader.ReadToFollowing("symbol");
-                d.condition = reader.GetAttribute("name");
+                    reader.ReadToFollowing("time");
+                    d.date = reader.GetAttribute("date");
 
-                reader.ReadToFollowing("precipitation");
-                d.precipitation = $"{Convert.ToDecimal(reader.GetAttribute("probability")) * 100}% {reader.GetAttribute("type")}";
+                    reader.ReadToFollowing("symbol");
+                    d.condition = reader.GetAttribute("name");
 
-                reader.ReadToFollowing("windDirection");
-                d.windDirection = $"{reader.GetAttribute("deg")}° [{reader.GetAttribute("name")}]";
+                    reader.ReadToFollowing("precipitation");
+                    d.precipitation = $"{Convert.ToDecimal(reader.GetAttribute("probability")) * 100}% {reader.GetAttribute("type")}";
 
-                reader.ReadToFollowing("windSpeed");
-                d.windSpeed = $"{reader.GetAttribute("mps")} m/s";
+                    reader.ReadToFollowing("windDirection");
+                    d.windDirection = $"{reader.GetAttribute("deg")}° [{reader.GetAttribute("name")}]";
 
-                reader.ReadToFollowing("temperature");
-                d.tempLow = reader.GetAttribute("min");
-                d.tempHigh = reader.GetAttribute("max");
+                    reader.ReadToFollowing("windSpeed");
+                    d.windSpeed = $"{reader.GetAttribute("mps")} m/s";
 
-                days.Add(d);
+                    reader.ReadToFollowing("temperature");
+                    d.tempLow = reader.GetAttribute("min");
+                    d.tempHigh = reader.GetAttribute("max");
+
+                    days.Add(d);
+                }
+                labelSearchError.Text = "";
             }
+            catch
+            {
+                labelSearchError.Text = "LOCATION NOT FOUND!";
+            }
+
 
         }
 
@@ -229,28 +303,44 @@ namespace Weather_App
             resize();
         }
 
-        private void cityTextBox_TextChanged(object sender, EventArgs e)
+        private void buttonSearch_MouseClick(object sender, MouseEventArgs e)
         {
             string txt = cityTextBox.Text;
-            
+
+            Form1.currentLocation = txt;
+
+            updateCurrent();
+
+            updateWeather();
+
+            resize();
         }
 
         private void updateCurrent()
         {
-            string v;
-            XmlReader reader = XmlReader.Create($"http://api.openweathermap.org/data/2.5/weather?q={Form1.currentLocation}&mode=xml&units=metric&appid=3f2e224b815c0ed45524322e145149f0");
-            while (reader.Read()) 
+            try
             {
-                reader.ReadToFollowing("city");
-
-                reader.ReadToFollowing("temperature");
-                v = reader.GetAttribute("value");
-
-                if (v != null)
+                string v;
+                XmlReader reader = XmlReader.Create($"http://api.openweathermap.org/data/2.5/weather?q={Form1.currentLocation}&mode=xml&units=metric&appid=3f2e224b815c0ed45524322e145149f0");
+                while (reader.Read())
                 {
-                    Form1.tempCurrent = Convert.ToDouble(v);
+                    reader.ReadToFollowing("city");
+
+                    reader.ReadToFollowing("temperature");
+                    v = reader.GetAttribute("value");
+
+                    if (v != null)
+                    {
+                        Form1.tempCurrent = Convert.ToDouble(v);
+                    }
                 }
+                labelSearchError.Text = "";
             }
+            catch
+            {
+                labelSearchError.Text = "LOCATION NOT FOUND!";
+            }
+            
 
         }
 
