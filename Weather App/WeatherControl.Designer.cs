@@ -54,7 +54,7 @@
             this.pictureDay6 = new System.Windows.Forms.PictureBox();
             this.pictureDay7 = new System.Windows.Forms.PictureBox();
             this.cityTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelRange = new System.Windows.Forms.Label();
             this.labelSearchError = new System.Windows.Forms.Label();
             this.buttonSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureDay1)).BeginInit();
@@ -348,16 +348,16 @@
             this.cityTextBox.Size = new System.Drawing.Size(285, 40);
             this.cityTextBox.TabIndex = 23;
             // 
-            // label1
+            // labelRange
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("MS PGothic", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.label1.Location = new System.Drawing.Point(6, 77);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(143, 23);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "LOW - HIGH";
+            this.labelRange.AutoSize = true;
+            this.labelRange.Font = new System.Drawing.Font("MS PGothic", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRange.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.labelRange.Location = new System.Drawing.Point(6, 77);
+            this.labelRange.Name = "labelRange";
+            this.labelRange.Size = new System.Drawing.Size(143, 23);
+            this.labelRange.TabIndex = 24;
+            this.labelRange.Text = "LOW - HIGH";
             // 
             // labelSearchError
             // 
@@ -372,6 +372,8 @@
             // 
             // buttonSearch
             // 
+            this.buttonSearch.BackgroundImage = global::Weather_App.Properties.Resources.icon;
+            this.buttonSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.buttonSearch.Location = new System.Drawing.Point(615, 12);
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(43, 40);
@@ -387,7 +389,7 @@
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.buttonSearch);
             this.Controls.Add(this.labelSearchError);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelRange);
             this.Controls.Add(this.cityTextBox);
             this.Controls.Add(this.pictureDay7);
             this.Controls.Add(this.pictureDay6);
@@ -454,7 +456,7 @@
         private System.Windows.Forms.PictureBox pictureDay6;
         private System.Windows.Forms.PictureBox pictureDay7;
         private System.Windows.Forms.TextBox cityTextBox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelRange;
         private System.Windows.Forms.Label labelSearchError;
         private System.Windows.Forms.Button buttonSearch;
     }
