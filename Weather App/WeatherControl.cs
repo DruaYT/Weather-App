@@ -38,86 +38,161 @@ namespace Weather_App
         string[] ThunderstormIcon = { "thunderstorm", "light thunderstorm", "heavy thunderstorm", "ragged thunderstorm" };
         string[] ThunderstormRainIcon = { "thunderstorm with light rain", "thunderstorm with rain", "thunderstorm with heavy rain", "thunderstorm with light drizzle", "thunderstorm with drizzle", "thunderstorm with heavy drizzle" };
 
+        readonly int UI_ALPHA = 150;
+
         public WeatherControl()
         {
             InitializeComponent();
         }
 
-        public Image GetImage(string cond, int day)
+        public Color GetColor(string cond)
         {
             if (RainIcon.Contains(cond) == true)
             {
-                dayLabels[day].BackColor = Color.RoyalBlue;
+                return Color.SlateBlue;
+            }
 
-                symbols[day].BackColor = Color.FromArgb(100, dayLabels[day].BackColor);
+            if (ShowerIcon.Contains(cond) == true)
+            {
+                return Color.SteelBlue;
+            }
 
-                statLabels[day].BackColor = Color.SteelBlue;
+            if (SnowIcon.Contains(cond))
+            {
+                return Color.Silver;
+            }
+
+            if (RainSnowIcon.Contains(cond))
+            {
+                return Color.SlateGray;
+            }
+
+            if (ThunderstormIcon.Contains(cond))
+            {
+                return Color.DarkSlateGray;
+            }
+
+            if (ThunderstormRainIcon.Contains(cond))
+            {
+                return Color.DarkSlateBlue;
+            }
+
+            if (MistIcon.Contains(cond))
+            {
+                return Color.SteelBlue;
+            }
+
+            switch (cond)
+            {
+                //
+                // CLEAR SKIES
+                //
+                case "clear sky":
+                    return Color.SkyBlue;
+
+                case "sky is clear":
+                    return Color.SkyBlue;
+
+                //
+                // CLOUDS
+                //
+                case "few clouds":
+                    return Color.DarkGray;
+
+                case "scattered clouds":
+                    return Color.DimGray;
+
+                case "broken clouds":;
+                    return Color.DimGray;
+
+                case "overcast clouds":
+                    return Color.Black;
+
+                //
+                // SPECIAL
+                //
+                case "tornado":
+                    return Color.Maroon;
+
+                case "volcanic ash":
+                    return Color.Maroon;
+
+                case "squalls":
+                    return Color.Maroon;
+
+                case "sand":
+                    return Color.Maroon;
+
+                case "sand/dust whirls":
+                    return Color.Maroon;
+            }
+
+            return Color.SlateGray;
+        }
+
+        public Image GetImage(string cond, int day)
+        {
+            void recolour(Color A, Color B)
+            {
+                try
+                {
+                    dayLabels[day].BackColor = A;
+
+                    statLabels[day].BackColor = Color.FromArgb(UI_ALPHA, B);
+
+                    symbols[day].BackColor = Color.FromArgb(UI_ALPHA, B);
+                }
+                catch
+                {
+                }
+                
+            }
+
+            if (RainIcon.Contains(cond) == true)
+            {
+                recolour(Color.RoyalBlue, Color.SteelBlue);
 
                 return Properties.Resources.rain;
             }
 
             if (ShowerIcon.Contains(cond) == true)
             {
-                dayLabels[day].BackColor = Color.DarkBlue;
-
-                symbols[day].BackColor = Color.FromArgb(100, dayLabels[day].BackColor);
-
-                statLabels[day].BackColor = Color.DarkCyan;
+                recolour(Color.DarkBlue, Color.DarkCyan);
 
                 return Properties.Resources.shower_rain;
             }
 
             if (SnowIcon.Contains(cond))
             {
-                dayLabels[day].BackColor = Color.LightBlue;
-
-                symbols[day].BackColor = Color.FromArgb(100, dayLabels[day].BackColor);
-
-                statLabels[day].BackColor = Color.PowderBlue;
+                recolour(Color.LightBlue, Color.PowderBlue);
 
                 return Properties.Resources.snow;
             }
 
             if (RainSnowIcon.Contains(cond))
             {
-                dayLabels[day].BackColor = Color.CadetBlue;
-
-                symbols[day].BackColor = Color.FromArgb(100, dayLabels[day].BackColor);
-
-                statLabels[day].BackColor = Color.DarkCyan;
+                recolour(Color.CadetBlue, Color.DarkCyan);
 
                 return Properties.Resources.rain_and_snow;
             }
 
             if (ThunderstormIcon.Contains(cond))
             {
-                dayLabels[day].BackColor = Color.DarkGray;
-
-                symbols[day].BackColor = Color.FromArgb(100, dayLabels[day].BackColor);
-
-                statLabels[day].BackColor = Color.DarkCyan;
+                recolour(Color.DarkGray, Color.DarkCyan);
 
                 return Properties.Resources.thunderstorm;
             }
 
             if (ThunderstormRainIcon.Contains(cond))
             {
-                dayLabels[day].BackColor = Color.Navy;
-
-                symbols[day].BackColor = Color.FromArgb(100, dayLabels[day].BackColor);
-
-                statLabels[day].BackColor = Color.DarkCyan;
+                recolour(Color.Navy, Color.DarkCyan);
 
                 return Properties.Resources.thunderstorm_rain;
             }
 
             if (MistIcon.Contains(cond))
             {
-                dayLabels[day].BackColor = Color.DarkBlue;
-
-                symbols[day].BackColor = Color.FromArgb(100, dayLabels[day].BackColor);
-
-                statLabels[day].BackColor = Color.DarkCyan;
+                recolour(Color.Gray, Color.DarkGray);
 
                 return Properties.Resources.mist;
             }
@@ -128,50 +203,35 @@ namespace Weather_App
                 // CLEAR SKIES
                 //
                 case "clear sky" :
-                    dayLabels[day].BackColor = Color.SkyBlue;
-
-                    symbols[day].BackColor = Color.FromArgb(100, dayLabels[day].BackColor);
-
-                    statLabels[day].BackColor = Color.DeepSkyBlue;
+                    recolour(Color.SkyBlue, Color.DeepSkyBlue);
 
                     return Properties.Resources.clear_sky;
-                
+
+                case "sky is clear":
+                    recolour(Color.SkyBlue, Color.DeepSkyBlue);
+
+                    return Properties.Resources.clear_sky;
+
                 //
                 // CLOUDS
                 //
                 case "few clouds":
-                    dayLabels[day].BackColor = Color.LightSkyBlue;
-
-                    symbols[day].BackColor = Color.FromArgb(100, dayLabels[day].BackColor);
-
-                    statLabels[day].BackColor = Color.SkyBlue;
+                    recolour(Color.LightSkyBlue, Color.SkyBlue);
 
                     return Properties.Resources.few_clouds;
 
                 case "scattered clouds":
-                    dayLabels[day].BackColor = Color.LightGray;
-
-                    symbols[day].BackColor = Color.FromArgb(100, dayLabels[day].BackColor);
-
-                    statLabels[day].BackColor = Color.Gray;
+                    recolour(Color.Silver, Color.DarkGray);
 
                     return Properties.Resources.scattered_clouds;
 
                 case "broken clouds":
-                    dayLabels[day].BackColor = Color.LightSlateGray;
-
-                    symbols[day].BackColor = Color.FromArgb(100, dayLabels[day].BackColor);
-
-                    statLabels[day].BackColor = Color.Gray;
+                    recolour(Color.LightSlateGray, Color.Gray);
 
                     return Properties.Resources.broken_clouds;
 
                 case "overcast clouds":
-                    dayLabels[day].BackColor = Color.LightSlateGray;
-
-                    symbols[day].BackColor = Color.FromArgb(100, dayLabels[day].BackColor);
-
-                    statLabels[day].BackColor = Color.Gray;
+                    recolour(Color.SlateGray, Color.DimGray);
 
                     return Properties.Resources.broken_clouds;
 
@@ -179,47 +239,27 @@ namespace Weather_App
                 // SPECIAL
                 //
                 case "tornado":
-                    dayLabels[day].BackColor = Color.Crimson;
-
-                    symbols[day].BackColor = Color.FromArgb(100, dayLabels[day].BackColor);
-
-                    statLabels[day].BackColor = Color.Firebrick;
+                    recolour(Color.Crimson, Color.Firebrick);
 
                     return Properties.Resources.tornado;
 
                 case "volcanic ash":
-                    dayLabels[day].BackColor = Color.Crimson;
-
-                    symbols[day].BackColor = Color.FromArgb(100, dayLabels[day].BackColor);
-
-                    statLabels[day].BackColor = Color.Firebrick;
+                    recolour(Color.Crimson, Color.Firebrick);
 
                     return Properties.Resources.volcanic_ash;
 
                 case "squalls":
-                    dayLabels[day].BackColor = Color.Crimson;
-
-                    symbols[day].BackColor = Color.FromArgb(100, dayLabels[day].BackColor);
-
-                    statLabels[day].BackColor = Color.Firebrick;
+                    recolour(Color.Crimson, Color.Firebrick);
 
                     return Properties.Resources.sqalls;
 
                 case "sand":
-                    dayLabels[day].BackColor = Color.Crimson;
-
-                    symbols[day].BackColor = Color.FromArgb(100, dayLabels[day].BackColor);
-
-                    statLabels[day].BackColor = Color.Firebrick;
+                    recolour(Color.Crimson, Color.Firebrick);
 
                     return Properties.Resources.sand;
 
                 case "sand/dust whirls":
-                    dayLabels[day].BackColor = Color.Crimson;
-
-                    symbols[day].BackColor = Color.FromArgb(100, dayLabels[day].BackColor);
-
-                    statLabels[day].BackColor = Color.Firebrick;
+                    recolour(Color.Crimson, Color.Firebrick);
 
                     return Properties.Resources.sand;
             }
@@ -232,7 +272,7 @@ namespace Weather_App
             Form f = this.FindForm();
             try
             {
-                for(int l = 0; l < 7; l++)
+                for (int l = 0; l < 7; l++)
                 {
                     Day day = days[l];
                     string cnd = day.condition.ToUpper();
@@ -242,6 +282,8 @@ namespace Weather_App
 
                     statLabels[l].Width = (int)(f.Width / 7.7);
                     statLabels[l].Height = (int)(f.Height / 3);
+
+                    statLabels[l].Font = new Font("Microsoft Sans Serif", (float)(statLabels[l].Width / 14), FontStyle.Bold);
 
                     symbols[l].Width = (int)(f.Width / 7.7);
                     symbols[l].Height = symbols[l].Width;
@@ -272,27 +314,18 @@ namespace Weather_App
 
                 labelTime.Location = new Point(f.Width - (int)(1.1*labelTime.Width), 0);
 
-                if (IS_CELCIUS == true)
-                {
-                    CurrentWeatherStats.Text = $"{Form1.currentLocation} \n\r{Convert.ToInt32(Form1.tempCurrent)}°C";
-                }
-                else
-                {
-                    CurrentWeatherStats.Text = $"{Form1.currentLocation} \n\r{(Convert.ToInt32(Form1.tempCurrent)*(9/5))+32} F";
-                }
+                cityTextBox.Width = this.Width / 5;
 
                 cityTextBox.Location = new Point(this.Width / 2 - cityTextBox.Width/2, cityTextBox.Height);
 
-                cityTextBox.Width = this.Width / 5;
+                labelSearchError.Width = cityTextBox.Width;
 
                 labelSearchError.Location = new Point(cityTextBox.Location.X, cityTextBox.Location.Y + cityTextBox.Height);
 
-                labelSearchError.Width = cityTextBox.Width;
-
-                buttonSearch.Location = new Point(cityTextBox.Location.X + (int)(cityTextBox.Width * 1.01), cityTextBox.Location.Y);
-
                 buttonSearch.Width = cityTextBox.Height;
                 buttonSearch.Height = cityTextBox.Height;
+
+                buttonSearch.Location = new Point(cityTextBox.Location.X + (int)(cityTextBox.Width * 1.01), cityTextBox.Location.Y);
 
                 labelRange.Text = $"HIGH {days[1].tempHigh}°C\n\r LOW {days[1].tempLow}°C";
 
@@ -375,15 +408,30 @@ namespace Weather_App
         {
             try
             {
-                string v;
+                string v, nm, cnm, cnd;
                 XmlReader reader = XmlReader.Create($"http://api.openweathermap.org/data/2.5/weather?q={Form1.currentLocation}&mode=xml&units=metric&appid=3f2e224b815c0ed45524322e145149f0");
                 while (reader.Read())
                 {
                     reader.ReadToFollowing("city");
+                    nm = reader.GetAttribute("name");
+                    cnm = reader.GetAttribute("country");
+
+                    //reader.ReadToFollowing("city");
 
                     reader.ReadToFollowing("temperature");
                     v = reader.GetAttribute("value");
 
+                    reader.ReadToFollowing("weather");
+                    cnd = reader.GetAttribute("value");
+
+                    if (nm != null && cnm != null)
+                    {
+                        Form1.currentLocation = $"{nm},{cnm}";
+                    }
+                    if (cnd != null)
+                    {
+                        Form1.currentCondition = cnd;
+                    }
                     if (v != null)
                     {
                         Form1.tempCurrent = Convert.ToDouble(v);
@@ -457,7 +505,24 @@ namespace Weather_App
                 labelTime.Text = $"{(hour).ToString("00")}:{min.ToString("00")}:{sec.ToString("00")}";
             }
 
-                
+            if (IS_CELCIUS == true)
+            {
+                CurrentWeatherStats.Text = $"{Form1.currentLocation} \n\r{Convert.ToInt32(Form1.tempCurrent)}°C";
+            }
+            else
+            {
+                CurrentWeatherStats.Text = $"{Form1.currentLocation} \n\r{(Convert.ToInt32(Form1.tempCurrent) * (9 / 5)) + 32} F";
+            }
+
+            if (Form1.currentCondition != null)
+            {
+                Color i = GetColor(Form1.currentCondition);
+                if(i != null)
+                {
+                    this.BackColor = i;
+                }
+            }
+
         }
     }
 }
