@@ -414,9 +414,11 @@
             this.Controls.Add(this.labelDay1);
             this.Controls.Add(this.labelTime);
             this.Controls.Add(this.CurrentWeatherStats);
+            this.DoubleBuffered = true;
             this.Name = "WeatherControl";
             this.Size = new System.Drawing.Size(891, 585);
             this.Load += new System.EventHandler(this.WeatherControl_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.WeatherControl_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pictureDay1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureDay2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureDay3)).EndInit();

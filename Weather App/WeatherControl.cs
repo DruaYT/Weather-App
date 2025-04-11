@@ -23,11 +23,15 @@ namespace Weather_App
 
         List<PictureBox> symbols = new List<PictureBox>();
 
+        List<Particle> particles = new List<Particle>();
+
+        Random rand = new Random();
+
         public PointF defaultSize = new PointF(893, 587);
 
         int sec, min, hour;
 
-        bool IS_MILITARY_TIME, IS_CELCIUS=true;
+        bool IS_MILITARY_TIME, IS_CELCIUS=true; // hour
 
         string[] RainIcon = { "rain", "light rain", "moderate rain", "heavy intensity rain", "very heavy rain", "extreme rain" };
         string[] ShowerIcon = { "shower rain", "light intensity shower rain", "heavy intensity shower rain", "ragged shower rain", "shower rain and drizzle", "heavy shower rain and drizzle", "shower drizzle" };
@@ -43,6 +47,93 @@ namespace Weather_App
         public WeatherControl()
         {
             InitializeComponent();
+
+        }
+
+        public string GetCondTag(string cond)
+        {
+            if (RainIcon.Contains(cond) == true)
+            {
+                return "rain";
+            }
+
+            if (ShowerIcon.Contains(cond) == true)
+            {
+                return "shower";
+            }
+
+            if (SnowIcon.Contains(cond))
+            {
+                return "snow";
+            }
+
+            if (RainSnowIcon.Contains(cond))
+            {
+                return "rain and snow";
+            }
+
+            if (ThunderstormIcon.Contains(cond))
+            {
+                return "thunderstorm";
+            }
+
+            if (ThunderstormRainIcon.Contains(cond))
+            {
+                return "thunderstorm rain";
+            }
+
+            if (MistIcon.Contains(cond))
+            {
+                return "mist";
+            }
+
+            switch (cond)
+            {
+                //
+                // CLEAR SKIES
+                //
+                case "clear sky":
+                    return "clear";
+
+                case "sky is clear":
+                    return "clear";
+
+                //
+                // CLOUDS
+                //
+                case "few clouds":
+                    return "cloudy";
+
+                case "scattered clouds":
+                    return "cloudy";
+
+                case "broken clouds":
+                    ;
+                    return "cloudy";
+
+                case "overcast clouds":
+                    return "cloudy";
+
+                //
+                // SPECIAL
+                //
+                case "tornado":
+                    return "special";
+
+                case "volcanic ash":
+                    return "special";
+
+                case "squalls":
+                    return "special";
+
+                case "sand":
+                    return "special";
+
+                case "sand/dust whirls":
+                    return "special";
+            }
+
+            return "none";
         }
 
         public Color GetColor(string cond)
@@ -327,7 +418,7 @@ namespace Weather_App
 
                 buttonSearch.Location = new Point(cityTextBox.Location.X + (int)(cityTextBox.Width * 1.01), cityTextBox.Location.Y);
 
-                labelRange.Text = $"HIGH {days[1].tempHigh}°C\n\r LOW {days[1].tempLow}°C";
+                labelRange.Text = $"HIGH {Math.Round(Convert.ToDouble(days[1].tempHigh))}°C\n\r LOW {Math.Round(Convert.ToDouble(days[1].tempLow))}°C";
 
                 labelRange.Location = new Point(CurrentWeatherStats.Location.X, CurrentWeatherStats.Height);
                 
@@ -404,6 +495,83 @@ namespace Weather_App
             resize();
         }
 
+        private void UpdateParticles(string cond)
+        {
+            foreach(Particle p in particles)
+            {
+                if(p.body!=null && p.body.Y >= this.Height + p.body.Height && p.body.X >= this.Width)
+                {
+                    p.body.Y += p.vel.Y;
+
+                    p.body.X += p.vel.X;
+
+                }
+                else
+                {
+                    particles.Remove(p);
+
+                    break;
+
+                }
+
+            }
+
+            switch (cond)
+            {
+                case "snow":
+
+                    if (rand.Next(1,100) <= 30)
+                    {
+                        particles.Add(new Particle(new PointF(rand.Next(0, this.Width), 0), "snow", Color.White));
+                    }
+
+                    break;
+
+                case "rain":
+                    if (rand.Next(1, 100) <= 30)
+                    {
+                        particles.Add(new Particle(new PointF(rand.Next(0, this.Width), 0), "rain", Color.CadetBlue));
+                    }
+
+                    break;
+
+                case "shower":
+                    if (rand.Next(1, 100) <= 60)
+                    {
+                        particles.Add(new Particle(new PointF(rand.Next(0, this.Width), 0), "rain", Color.CadetBlue));
+                    }
+
+                    break;
+
+                case "cloudy":
+                    if (rand.Next(1, 100) <= 30)
+                    {
+                        particles.Add(new Particle(new PointF(0, rand.Next(0, this.Height)), "cloud", Color.FromArgb(100, Color.LightSlateGray)));
+                    }
+
+                    break;
+            }
+
+        }
+
+        private void WeatherControl_Paint(object sender, PaintEventArgs e)
+        {
+            foreach (Particle p in particles)
+            {
+                if (p.type == "rain")
+                {
+                    e.Graphics.FillRectangle(new SolidBrush(p.color), p.body);
+
+                }
+                else
+                {
+                    e.Graphics.FillEllipse(new SolidBrush(p.color), p.body);
+
+                }
+
+            }
+        }
+
         private void updateCurrent()
         {
             try
@@ -415,8 +583,6 @@ namespace Weather_App
                     reader.ReadToFollowing("city");
                     nm = reader.GetAttribute("name");
                     cnm = reader.GetAttribute("country");
-
-                    //reader.ReadToFollowing("city");
 
                     reader.ReadToFollowing("temperature");
                     v = reader.GetAttribute("value");
@@ -480,6 +646,7 @@ namespace Weather_App
             resize();
 
             tickTimer.Enabled = true;
+
             IS_MILITARY_TIME = false;
         }
 
@@ -517,12 +684,22 @@ namespace Weather_App
             if (Form1.currentCondition != null)
             {
                 Color i = GetColor(Form1.currentCondition);
+
+                string CurrentCond = GetCondTag(Form1.currentCondition);
+
                 if(i != null)
                 {
                     this.BackColor = i;
                 }
-            }
 
+
+                // UNUSED STUFF vvvv
+
+                //UpdateParticles(CurrentCond);
+
+                //Refresh();
+
+            }
         }
     }
 }
